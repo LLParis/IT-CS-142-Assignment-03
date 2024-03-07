@@ -2,6 +2,8 @@
 // IT-CS-142-Assignment-03
 import java.util.*;
 import java.io.*;
+import java.lang.*;
+
 
 public class Sum {
     private static final String DATA = "src/sum.txt";
@@ -19,28 +21,34 @@ public class Sum {
         while (input.hasNextLine()) {
             String line = input.nextLine();
             Scanner lineScanner = new Scanner(line);
-
+            int[] sum = new int[ARRAY_SIZE];
             while (lineScanner.hasNext()) {
-                String token = lineScanner.next();
+                String numberStr = lineScanner.next();
+                int[] numberArray = stringToDigitArray(numberStr);
             }
-
         }
     }
 
-    private static int[] stringToDigitArray() {
-
-        for (int i = ARRAY_SIZE - 1; i >= 0; i--) {
-
+    private static int[] stringToDigitArray(String number) {
+        int[] digits = new int[25];
+        int index = ARRAY_SIZE - number.length();
+        for (int num : number.toCharArray()) {
+            digits[index++] = Character.getNumericValue(num);
         }
+        return digits;
     }
 
-    private static int addLargeNumbers() {
+    private static int addLargeNumbers(int number1, int number2) {
+        int[] result = new int[ARRAY_SIZE];
+        int sum = number1 + number2;
 
-        int carry = sum % 10;
-        return carry;
+        return sum;
     }
 
-    private static void printSum() {
+    private static void printSum(String[] nums) {
+        for (String num : nums) {
+            num.split("");
+        }
 
     }
 }
