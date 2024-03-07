@@ -1,28 +1,29 @@
 // London Paris
-// IT-CS-142-Assignment-3
+// IT-CS-142-Assignment-03
 import java.util.*;
 import java.io.*;
 
 public class Sum {
     private static final String DATA = "src/sum.txt";
-    public static void main(String[] args) throws FileNotFoundException {
-        lineScanner(DATA);
+    private static final int ARRAY_SIZE = 25;
+
+    public static void main(String[] args) {
+
     }
 
-    public static String lineScanner(String txt) throws FileNotFoundException {
-        Scanner line = new Scanner(new File(txt));
-        String[] array = new String[25];
+    private static void processFile() {
 
+    }
 
-        // checking for line existence
-        while (line.hasNextLine()) {
+    private static int[] stringToDigitArray() {
 
-            // scanning the tokens
-            Scanner lineScanner = new Scanner(line.nextLine());
-            while (lineScanner.hasNext()) {
+    }
 
-            }
+    private static int addLargeNumbers() {
 
-        }
+    }
+
+    private static void printSum() {
+
     }
 }
