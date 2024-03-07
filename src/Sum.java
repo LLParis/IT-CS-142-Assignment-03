@@ -2,8 +2,6 @@
 // IT-CS-142-Assignment-03
 import java.util.*;
 import java.io.*;
-import java.lang.*;
-
 
 public class Sum {
     private static final String DATA = "src/sum.txt";
@@ -16,17 +14,30 @@ public class Sum {
 
     private static void processFile(Scanner input) {
 
-        int lineCount = 0;
+        int lineCount = 1;
 
         while (input.hasNextLine()) {
             String line = input.nextLine();
             Scanner lineScanner = new Scanner(line);
             int[] sum = new int[ARRAY_SIZE];
+            boolean firstNumber = true;
+
             while (lineScanner.hasNext()) {
                 String numberStr = lineScanner.next();
+                if (firstNumber) {
+                    firstNumber = false;
+                    System.out.print(numberStr);
+                } else {
+                    System.out.print(" + " + numberStr);
+                }
                 int[] numberArray = stringToDigitArray(numberStr);
+                sum = addLargeNumbers(sum, numberArray);
             }
+            System.out.print(" = " );
+            printSum(sum);
+            lineCount++;
         }
+        System.out.println("Total lines = " + lineCount);
     }
 
     private static int[] stringToDigitArray(String number) {
@@ -38,17 +49,31 @@ public class Sum {
         return digits;
     }
 
-    private static int addLargeNumbers(int number1, int number2) {
+    private static int[] addLargeNumbers(int[] number1, int[] number2) {
         int[] result = new int[ARRAY_SIZE];
-        int sum = number1 + number2;
-
-        return sum;
+        int carry = 0;
+        int sum = 0;
+        int index = ARRAY_SIZE - number1.length;
+        for (int i = ARRAY_SIZE - 1; i >= 0; i--) {
+             sum = number1[i] + number2[i] + carry;
+            result[i] = sum % 10;
+              carry = sum / 10;
+        }
+        return result;
     }
 
-    private static void printSum(String[] nums) {
-        for (String num : nums) {
-            num.split("");
+    private static void printSum(int[] sum) {
+        boolean leadingZero = true;
+        for (int digit : sum) {
+            if (leadingZero && digit == 0) {
+                continue;
+            }
+            leadingZero = false;
+            System.out.print(digit);
         }
-
+        if (leadingZero) {
+            System.out.print(0);
+        }
+        System.out.println();
     }
 }
