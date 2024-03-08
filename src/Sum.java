@@ -3,15 +3,19 @@
 import java.util.*;
 import java.io.*;
 
+// program class
 public class Sum {
+    // Constants for file path and array size
     private static final String DATA = "src/sum.txt";
     private static final int ARRAY_SIZE = 25;
 
     public static void main(String[] args) throws FileNotFoundException {
         Scanner input = new Scanner(new File(DATA));
         processFile(input);
+        input.close();
     }
 
+    // Processes the file line by line to compute the sums of large numbers
     private static void processFile(Scanner input) {
 
         int lineCount = 1;
@@ -40,6 +44,7 @@ public class Sum {
         System.out.println("Total lines = " + lineCount);
     }
 
+    // String conversion to numerical digits
     private static int[] stringToDigitArray(String number) {
         int[] digits = new int[25];
         int index = ARRAY_SIZE - number.length();
@@ -48,7 +53,7 @@ public class Sum {
         }
         return digits;
     }
-
+    // Places the addition of two integer arrays into one array
     private static int[] addLargeNumbers(int[] number1, int[] number2) {
         int[] result = new int[ARRAY_SIZE];
         int carry = 0;
@@ -62,6 +67,7 @@ public class Sum {
         return result;
     }
 
+    // Calculation display
     private static void printSum(int[] sum) {
         boolean leadingZero = true;
         for (int digit : sum) {
