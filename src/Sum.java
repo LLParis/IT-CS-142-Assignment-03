@@ -19,13 +19,14 @@ public class Sum {
     private static void processFile(Scanner input) {
 
         int lineCount = 1;
-
+        // continues reading until no lines left
         while (input.hasNextLine()) {
             String line = input.nextLine();
             Scanner lineScanner = new Scanner(line);
             int[] sum = new int[ARRAY_SIZE];
             boolean firstNumber = true;
 
+            // reads tokens on line until no tokens left
             while (lineScanner.hasNext()) {
                 String numberStr = lineScanner.next();
                 if (firstNumber) {
@@ -57,12 +58,11 @@ public class Sum {
     private static int[] addLargeNumbers(int[] number1, int[] number2) {
         int[] result = new int[ARRAY_SIZE];
         int carry = 0;
-        int sum = 0;
-        int index = ARRAY_SIZE - number1.length;
+        // starts addition at the last index/ones place
         for (int i = ARRAY_SIZE - 1; i >= 0; i--) {
-             sum = number1[i] + number2[i] + carry;
+            int sum = number1[i] + number2[i] + carry;
             result[i] = sum % 10;
-              carry = sum / 10;
+            carry = sum / 10;
         }
         return result;
     }
