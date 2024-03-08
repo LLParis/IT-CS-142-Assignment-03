@@ -18,7 +18,7 @@ public class Sum {
     // Processes the file line by line to compute the sums of large numbers
     private static void processFile(Scanner input) {
 
-        int lineCount = 1;
+        int lineCount = 0;
         // continues reading until no lines left
         while (input.hasNextLine()) {
             String line = input.nextLine();
@@ -48,8 +48,11 @@ public class Sum {
     // String conversion to numerical digits
     private static int[] stringToDigitArray(String number) {
         int[] digits = new int[25];
+
+        // correct index calculation
         int index = ARRAY_SIZE - number.length();
         for (int num : number.toCharArray()) {
+
             digits[index++] = Character.getNumericValue(num);
         }
         return digits;
@@ -58,6 +61,7 @@ public class Sum {
     private static int[] addLargeNumbers(int[] number1, int[] number2) {
         int[] result = new int[ARRAY_SIZE];
         int carry = 0;
+
         // starts addition at the last index/ones place
         for (int i = ARRAY_SIZE - 1; i >= 0; i--) {
             int sum = number1[i] + number2[i] + carry;
